@@ -13,6 +13,34 @@ const getLibrary = async () => {
       }
     );
 
+    let xenoverso = await fetch(
+      "https://striveschool-api.herokuapp.com/api/deezer/search?q=xenoverso",
+      {
+        method: "GET",
+      }
+    );
+
+    let anastasis = await fetch(
+      "https://striveschool-api.herokuapp.com/api/deezer/search?q=anastasis",
+      {
+        method: "GET",
+      }
+    );
+
+    let animals = await fetch(
+      "https://striveschool-api.herokuapp.com/api/deezer/search?q=animals",
+      {
+        method: "GET",
+      }
+    );
+
+    let queryAlbums = await fetch(
+      "https://striveschool-api.herokuapp.com/api/deezer/search?q=query",
+      {
+        method: "GET",
+      }
+    );
+
     if (discografiaRancore.ok) {
       console.log("discografiaRancore", discografiaRancore);
       let elencoDischi = await discografiaRancore.json();
@@ -30,7 +58,9 @@ const getLibrary = async () => {
          </div>
          </div>`;
       }
-    } else if (CanzoneCaparezza.ok) {
+    }
+
+    if (CanzoneCaparezza.ok) {
       console.log("CanzoneCaparezza", CanzoneCaparezza);
       let canzoneSez2 = await CanzoneCaparezza.json();
       let nomeACaso2 = canzoneSez2.data;
@@ -44,18 +74,92 @@ const getLibrary = async () => {
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">${nomeACaso2[0].data.title}</h5>
-            <p class="card-text">${nomeACaso2[0].data.album.title}</p>
+            <h5 class="card-title">${nomeACaso2[0].title}</h5>
+            <p class="card-text">${nomeACaso2[0].album.title}</p>
           </div>
         </div>
       </div>
     </div>`;
-    } else {
-      throw "c'è stato un errore";
+    }
+
+    if (xenoverso.ok && anastasis.ok && animals.ok) {
+      console.log("xenoverso", xenoverso);
+      let albumSez3a = await xenoverso.json();
+      let nomeACaso3a = albumSez3a.data;
+
+      console.log("anastasis", anastasis);
+      let albumSez3b = await anastasis.json();
+      let nomeACaso3b = albumSez3b.data;
+
+      console.log("animals", animals);
+      let albumSez3c = await animals.json();
+      let nomeACaso3c = albumSez3c.data;
+
+      let rowThree = document.getElementById("rowThree");
+
+      rowThree.innerHTML += `<div id="carouselExampleCaptions" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="${nomeACaso3a[0].artist.picture_xl}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>${nomeACaso3a[0].title}</h5>
+            <p>${nomeACaso3a[0].album.title}</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="${nomeACaso3b[0].artist.picture_xl}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>${nomeACaso3b[0].title}</h5>
+            <p>${nomeACaso3b[0].album.title}</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="${nomeACaso3c[0].artist.picture_xl}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>${nomeACaso3c[0].title}</h5>
+            <p>${nomeACaso3c[0].album.title}</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>`;
     }
   } catch (err) {
     console.log(err);
   }
 };
+
+const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+
+const alert = (message, type) => {
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    "</div>",
+  ].join("");
+
+  alertPlaceholder.append(wrapper);
+};
+
+const alertTrigger = document.getElementById("liveAlertBtn");
+if (alertTrigger) {
+  alertTrigger.addEventListener("click", () => {
+    alert("Nice, you triggered this alert message!", "success");
+  });
+}
 
 getLibrary();
