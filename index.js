@@ -30,10 +30,7 @@ const getLibrary = async () => {
          </div>
          </div>`;
       }
-    } else {
-      throw "c'è stato un errore dentro il primo if";
-    }
-    if (CanzoneCaparezza.ok) {
+    } else if (CanzoneCaparezza.ok) {
       console.log("CanzoneCaparezza", CanzoneCaparezza);
       let canzoneSez2 = await CanzoneCaparezza.json();
       let nomeACaso2 = canzoneSez2.data;
@@ -43,7 +40,7 @@ const getLibrary = async () => {
       rowTwo.innerHTML += `<div class="card mb-3" style="max-width: 540px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="${nomeACaso2[0].data.artist.picture_big}" class="img-fluid rounded-start" alt="...">
+          <img src="${nomeACaso2[0].artist.picture_big}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -54,7 +51,7 @@ const getLibrary = async () => {
       </div>
     </div>`;
     } else {
-      throw "c'è stato un errore dentro il secondo if";
+      throw "c'è stato un errore";
     }
   } catch (err) {
     console.log(err);
