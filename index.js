@@ -34,12 +34,8 @@ const getLibrary = async () => {
       }
     );
 
-    let queryAlbums = await fetch(
-      "https://striveschool-api.herokuapp.com/api/deezer/search?q=query",
-      {
-        method: "GET",
-      }
-    );
+    let arrayButton = [];
+    console.log("primo arrayButton", arrayButton);
 
     if (discografiaRancore.ok) {
       console.log("discografiaRancore", discografiaRancore);
@@ -57,6 +53,9 @@ const getLibrary = async () => {
          <p class="card-text">${nomeACaso[num].album.title}</p>
          </div>
          </div>`;
+        arrayButton.push(
+          ((title = nomeACaso[num].title), (rank = nomeACaso[num].title))
+        );
       }
     }
 
@@ -80,6 +79,10 @@ const getLibrary = async () => {
         </div>
       </div>
     </div>`;
+
+      arrayButton.push(
+        ((title = nomeACaso2[0].title), (rank = nomeACaso2[0].title))
+      );
     }
 
     if (xenoverso.ok && anastasis.ok && animals.ok) {
@@ -135,31 +138,50 @@ const getLibrary = async () => {
         <span class="visually-hidden">Next</span>
       </button>
     </div>`;
+
+      arrayButton.push(
+        ((title = nomeACaso3a[0].title.value), (rank = nomeACaso3a[0].rank)),
+        ((title = nomeACaso3b[0].title.value), (rank = nomeACaso3b[0].rank)),
+        ((title = nomeACaso3c[0].title.value), (rank = nomeACaso3c[0].rank))
+      );
+    }
+    console.log("arrayButton dopo il push", arrayButton);
+    //azione bottone prima inserire le canzoni salvate in un array, poi {aray.sort(a,b) => a.rank - b.rank);}
+
+    const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+
+    const alert = (message, type) => {
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible fixed-top" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        "</div>",
+      ].join("");
+
+      alertPlaceholder.append(wrapper);
+    };
+
+    const alertTrigger = document.getElementById("liveAlertBtn");
+    if (alertTrigger) {
+      alertTrigger.addEventListener("click", () => {
+        alert(
+          `<h5>Queste sono le canzoni che sono in questa pagina!</h5>
+          <li>&{arrayButton[0].title}</li>
+          <li>${arrayButton[1].title}</li>
+          <li>${arrayButton[2].title}</li>
+          <li>${arrayButton[3].title}</li>
+          <li>${arrayButton[4].title}</li>
+          <li>&{arrayButton[5].title}</li>
+          <li>&{arrayButton[6].title}</li>
+          <li>&{arrayButton[7].title}</li>`,
+          "success"
+        );
+      });
     }
   } catch (err) {
     console.log(err);
   }
 };
-
-const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
-
-const alert = (message, type) => {
-  const wrapper = document.createElement("div");
-  wrapper.innerHTML = [
-    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-    `   <div>${message}</div>`,
-    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    "</div>",
-  ].join("");
-
-  alertPlaceholder.append(wrapper);
-};
-
-const alertTrigger = document.getElementById("liveAlertBtn");
-if (alertTrigger) {
-  alertTrigger.addEventListener("click", () => {
-    alert("Nice, you triggered this alert message!", "success");
-  });
-}
 
 getLibrary();
