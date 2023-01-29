@@ -76,16 +76,20 @@
                 </ul>
               </li>
             </ul>
-            <form class="d-flex" role="search">
+            <form id="search-form" class="d-flex" role="search">
               <input
-                id="barraDiRicerca"
+                id="search-input"
                 class="form-control me-2"
                 type="search"
                 placeholder="cerca"
                 aria-label="Search"
                 onkeydown="ricerca()"
               />
-              <button class="btn btn-outline-success" type="submit">
+              <button
+                id="search-button"
+                class="btn btn-outline-success"
+                type="submit"
+              >
                 Cerca
               </button>
             </form>
@@ -95,6 +99,11 @@
     </header>
     <main class="p-1">
       <h1>I miei gusti musicali</h1>
+      <!-- parte commentata perché non funziona la barra di ricerca, quindi è inutile.
+        <section id="containerSearch">
+        <h2>Risultati della tua ricerca</h2>
+        <div id="rowSeach" class="row"></div>
+      </section> -->
       <section id="containerOne">
         <h2>Canzoni di Rancore</h2>
         <div id="rowOne" class="row"></div>

@@ -255,13 +255,13 @@ const getLibrary = async () => {
     let modalBody = document.getElementById("modalBody");
     modalBody.innerHTML += `<ul>
     <li>${arrayButton[0].album}, ${arrayButton[0].title}</li>
-           <li>${arrayButton[1].album}, ${arrayButton[1].title}</li>
-           <li>${arrayButton[2].album}, ${arrayButton[2].title}</li>
-           <li>${arrayButton[3].album}, ${arrayButton[3].title}</li>
-           <li>${arrayButton[4].album}, ${arrayButton[4].title}</li>
-           <li>${arrayButton[5].album}, ${arrayButton[5].title}</li>
-           <li>${arrayButton[6].album}, ${arrayButton[6].title}</li>
-           <li>${arrayButton[7].album}, ${arrayButton[7].title}</li>
+    <li>${arrayButton[1].album}, ${arrayButton[1].title}</li>
+    <li>${arrayButton[2].album}, ${arrayButton[2].title}</li>
+    <li>${arrayButton[3].album}, ${arrayButton[3].title}</li>
+    <li>${arrayButton[4].album}, ${arrayButton[4].title}</li>
+    <li>${arrayButton[5].album}, ${arrayButton[5].title}</li>
+    <li>${arrayButton[6].album}, ${arrayButton[6].title}</li>
+    <li>${arrayButton[7].album}, ${arrayButton[7].title}</li>
     </ul>`;
   } catch (err) {
     console.log(err);
@@ -269,3 +269,42 @@ const getLibrary = async () => {
 };
 
 getLibrary();
+
+// lavoro sulla barra di ricerca che non funziona.
+
+// const searchForm = document.getElementById("search-form");
+// const searchInput = document.getElementById("search-input");
+
+// searchForm.addEventListener("submit", function (event) {
+//   event.preventDefault();
+//   let searchTerm = searchInput.value;
+
+//   let searching = fetch(
+//     `https://striveschool-api.herokuapp.com/api/deezer/search?q=${searchTerm}`,
+//     {
+//       method: "GET",
+//     }
+//   );
+
+//   if (searching.ok) {
+//     let searcedResult = searching.json();
+//     let musicSearced = searcedResult.data;
+
+//     let rowSeach = document.getElementById("rowSeach");
+
+//     searchForm.addEventListener("submit", function (event) {
+//       event.preventDefault();
+//       const searchTerm = searchInput.value;
+//     });
+
+//     for (let i = 0; i < 12; i++) {
+//       rowSeach.innerHTML += `<div class="card p-0 col-3 mb-2">
+//       <img src="${musicSearced[i].album.cover_big}" class="card-img-top" style="height: 65%" alt="...">
+//       <div class="card-body d-flex flex-column justify-content-between">
+//       <h5 class="card-title">${musicSearced[i].title}</h5>
+//       <p class="card-text">${musicSearced[i].album.title}</p>
+//       </div>
+//       </div>`;
+//     }
+//   }
+// });
