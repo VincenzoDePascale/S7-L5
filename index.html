@@ -11,18 +11,89 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <style>
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-        padding: 1em;
-      }
-    </style>
   </head>
-  <body>
-    <header></header>
-    <main>
+  <body class="w-100">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a
+            class="navbar-brand"
+            href="https://open.spotify.com/"
+            target="_blank"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-music-note"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2z"
+              />
+              <path fill-rule="evenodd" d="M9 3v10H8V3h1z" />
+              <path
+                d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z"
+              />
+            </svg>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input
+                id="barraDiRicerca"
+                class="form-control me-2"
+                type="search"
+                placeholder="cerca"
+                aria-label="Search"
+                onkeydown="ricerca()"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Cerca
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="p-1">
       <h1>I miei gusti musicali</h1>
       <section id="containerOne">
         <h2>Canzoni di Rancore</h2>

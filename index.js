@@ -44,10 +44,8 @@ const getLibrary = async () => {
     }
 
     let arrayButton = [];
-    console.log("primo arrayButton", arrayButton);
 
     if (discografiaRancore.ok) {
-      console.log("discografiaRancore", discografiaRancore);
       let elencoDischi = await discografiaRancore.json();
       let music = elencoDischi.data;
 
@@ -115,7 +113,6 @@ const getLibrary = async () => {
     }
 
     if (CanzoneCaparezza.ok) {
-      console.log("CanzoneCaparezza", CanzoneCaparezza);
       let canzoneSez2 = await CanzoneCaparezza.json();
       let music2 = canzoneSez2.data;
 
@@ -146,15 +143,12 @@ const getLibrary = async () => {
     }
 
     if (xenoverso.ok && anastasis.ok && animals.ok) {
-      console.log("xenoverso", xenoverso);
       let albumSez3a = await xenoverso.json();
       let music3a = albumSez3a.data;
 
-      console.log("anastasis", anastasis);
       let albumSez3b = await anastasis.json();
       let music3b = albumSez3b.data;
 
-      console.log("animals", animals);
       let albumSez3c = await animals.json();
       let music3c = albumSez3c.data;
 
@@ -220,8 +214,7 @@ const getLibrary = async () => {
       );
       arrayButton.push(canzone8);
     }
-    console.log("arrayButton dopo il push", arrayButton);
-    //{arrayButton.sort(a,b) => a.rank - b.rank);}
+
     let oderedButton = arrayButton.sort((a, b) => a.rank - b.rank);
 
     const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
